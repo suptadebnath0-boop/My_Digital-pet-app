@@ -1,0 +1,17 @@
+{
+  "type": "dog",
+  "name": "Buddy",
+  "createdAt": 1794502149215,
+  "lastSaved": 1794502155612,
+  "hunger": 95,
+  "happiness": 86,
+  "energy": 85,
+  "health": 95,
+  "growthStage": 1,
+  "growthProgress": 8,
+  "level": 1,
+  "xp": 12,
+  "isSleeping": false,
+  "totalInteractions": 1,
+  "totalFeeds": 1
+}

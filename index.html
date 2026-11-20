@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Digital Pet – Buddy & Kitty</title>
+  <meta name="description" content="Living, interactive AI Digital Pet game. Adopt Buddy the dog or Kitty the cat, take care of them, feed them, dance with them, watch them grow, and chat anytime!">
+  <meta name="theme-color" content="#F97316">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.svg">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="AI Digital Pet">
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#FFF7F1] text-stone-800 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-[#FFF7F1]/90 backdrop-blur border-b border-orange-100">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <img src="icon.svg" alt="Buddy & Kitty Logo" class="w-9 h-9">
+        <div class="leading-tight">
+          <div class="font-extrabold text-[17px] text-orange-950 flex items-center gap-1.5">
+            AI Digital Pet <span class="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-bold">Living Game</span>
+          </div>
+          <div class="text-xs text-stone-500 font-semibold">Buddy &amp; Kitty</div>
+        </div>
+      </div>
+
+      <!-- Header Controls: Sound & Settings -->
+      <div class="flex items-center gap-2">
+        <button id="headerMuteBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-orange-200 bg-white hover:bg-orange-50 text-xs font-bold text-stone-700 transition" title="Toggle Sound">
+          <span id="soundIcon">🔊</span>
+          <span id="soundLabel">Sound On</span>
+        </button>
+        <button id="settingsBtn" class="w-9 h-9 rounded-full border border-orange-200 bg-white hover:bg-orange-50 flex items-center justify-center text-stone-600 transition" title="Settings">
+          <i data-lucide="settings" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1">
+
+    <!-- Loading Screen -->
+    <section id="screenLoading" class="screen flex items-center justify-center py-32">
+      <div class="flex items-center gap-3 text-stone-500 font-bold">
+        <i data-lucide="loader-2" class="w-5 h-5 animate-spin text-orange-500"></i>
+        <span>Loading your living pet…</span>
+      </div>
+    </section>
+
+    <!-- Adoption Screen -->
+    <section id="screenAdopt" class="screen hidden">
+      <div class="max-w-4xl mx-auto px-4 py-10 sm:py-14">
+        <div class="text-center mb-10">
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-100 rounded-full px-3 py-1">
+            <i data-lucide="heart" class="w-3.5 h-3.5 fill-current"></i> Adoption Center
+          </span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold mt-4 text-stone-900">Choose your new best friend</h1>
+          <p class="text-stone-500 mt-2 max-w-lg mx-auto">
+            Experience a living, animated companion that eats, walks, dances, grows through 5 stages, and chats in English &amp; Bengali!
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <!-- Adopt Buddy -->
+          <button data-adopt="dog" class="adopt-card group text-left bg-white rounded-3xl border border-orange-100 p-5 hover:border-orange-300 hover:shadow-lg transition">
+            <div class="aspect-square rounded-2xl overflow-hidden bg-[#FFF4ED] p-2 flex items-center justify-center">
+              <img src="assets/buddy.svg" alt="Buddy the dog" class="w-full h-full object-contain group-hover:scale-105 transition duration-500">
+            </div>
+            <div class="flex items-center justify-between mt-4 px-1">
+              <div>
+                <div class="text-2xl font-black text-stone-900">Buddy</div>
+                <div class="text-sm text-stone-500 font-semibold">Playful &amp; loyal golden pup</div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 bg-orange-500 text-white font-bold text-sm rounded-full px-4 py-2 group-hover:bg-orange-600 transition">
+                Adopt <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-3 px-1">
+              <span class="trait">Loyal</span>
+              <span class="trait">Energetic</span>
+              <span class="trait">Loves Fetch</span>
+              <span class="trait">Dancing Dog</span>
+            </div>
+          </button>
+
+          <!-- Adopt Kitty -->
+          <button data-adopt="cat" class="adopt-card group text-left bg-white rounded-3xl border border-orange-100 p-5 hover:border-orange-300 hover:shadow-lg transition">
+            <div class="aspect-square rounded-2xl overflow-hidden bg-[#FFF4ED] p-2 flex items-center justify-center">
+              <img src="assets/kitty.svg" alt="Kitty the cat" class="w-full h-full object-contain group-hover:scale-105 transition duration-500">
+            </div>
+            <div class="flex items-center justify-between mt-4 px-1">
+              <div>
+                <div class="text-2xl font-black text-stone-900">Kitty</div>
+                <div class="text-sm text-stone-500 font-semibold">Curious &amp; adorable calico kitten</div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 bg-orange-500 text-white font-bold text-sm rounded-full px-4 py-2 group-hover:bg-orange-600 transition">
+                Adopt <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-3 px-1">
+              <span class="trait">Curious</span>
+              <span class="trait">Cuddly</span>
+              <span class="trait">Sweet Purr</span>
+              <span class="trait">Loves Naps</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Name Pet Dialog -->
+    <div id="nameDialog" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-stone-900/50 backdrop-blur-sm">
+      <form id="nameForm" class="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl border border-orange-100">
+        <div class="flex items-center gap-4">
+          <img id="nameDialogImg" src="assets/buddy.svg" alt="" class="w-20 h-20 rounded-2xl object-contain bg-[#FFF4ED] p-1 border border-orange-100">
+          <div>
+            <div class="text-xl font-black text-stone-900">Congratulations!</div>
+            <div class="text-sm text-stone-500 font-semibold">Give your new best friend a name.</div>
+          </div>
+        </div>
+        <label class="block mt-5 text-xs font-bold uppercase tracking-wider text-stone-500" for="petNameInput">Pet Name</label>
+        <input id="petNameInput" maxlength="20" required class="mt-1.5 w-full rounded-xl border border-stone-200 px-4 py-3 outline-none font-bold text-stone-800 focus:border-orange-400 focus:ring-2 focus:ring-orange-200" placeholder="Buddy">
+        <div class="flex gap-2.5 mt-5">
+          <button type="button" id="nameCancel" class="flex-1 rounded-xl border border-stone-200 py-3 font-bold text-stone-600 hover:bg-stone-50 transition">Back</button>
+          <button type="submit" id="nameConfirm" class="flex-1 rounded-xl bg-orange-500 text-white py-3 font-bold hover:bg-orange-600 transition shadow-md shadow-orange-500/20">Adopt Pet</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Active Pet Dashboard -->
+    <section id="screenPet" class="screen hidden">
+      <div class="max-w-6xl mx-auto px-4 py-6 grid lg:grid-cols-[1fr_390px] gap-6">
+
+        <!-- Left Column: Living Pet Stage & Stats -->
+        <div class="space-y-5">
+
+          <!-- Living Character Stage Card -->
+          <div class="bg-white rounded-3xl border border-orange-100 p-5 shadow-sm">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h2 id="petName" class="text-2xl sm:text-3xl font-black text-stone-900">Buddy</h2>
+                  <span id="petLevel" class="text-xs font-extrabold bg-orange-100 text-orange-700 rounded-full px-2.5 py-0.5 border border-orange-200">Lv 1</span>
+                  <span id="stageBadge" class="text-xs font-extrabold bg-emerald-100 text-emerald-800 rounded-full px-2.5 py-0.5 border border-emerald-200">🌱 Stage 1: Baby</span>
+                </div>
+                <div id="petMeta" class="text-xs font-semibold text-stone-500 mt-0.5">Dog · 0 days old</div>
+              </div>
+              <div id="moodBadge" class="inline-flex items-center gap-1.5 text-xs font-extrabold rounded-full px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <i data-lucide="smile" class="w-4 h-4"></i>
+                <span id="moodText">Happy</span>
+              </div>
+            </div>
+
+            <!-- Pet Growth & XP Meters Header -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 bg-orange-50/60 p-3 rounded-2xl border border-orange-100">
+              <div>
+                <div class="flex items-center justify-between text-xs font-extrabold text-stone-700">
+                  <span class="inline-flex items-center gap-1.5"><span class="text-emerald-500">🌱</span><span>Growth (Feed to evolve)</span></span>
+                  <span id="growthText" class="text-stone-500 font-black">0 / 100</span>
+                </div>
+                <div class="h-2 rounded-full bg-stone-200 mt-1 overflow-hidden">
+                  <div id="growthBar" class="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between text-xs font-extrabold text-stone-700">
+                  <span class="inline-flex items-center gap-1.5"><i data-lucide="star" class="w-3.5 h-3.5 text-amber-500 fill-current"></i><span>Bond XP</span></span>
+                  <span id="xpText" class="text-stone-500 font-black">0 / 100</span>
+                </div>
+                <div class="h-2 rounded-full bg-stone-200 mt-1 overflow-hidden">
+                  <div id="xpBar" class="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Animated Living Pet Stage Viewport -->
+            <div id="stageArea" class="pet-stage relative select-none">
+              <!-- Night sky stars -->
+              <div class="stage-stars"></div>
+              <!-- Night ambient dimming -->
+              <div id="stageNight" class="absolute inset-0 bg-indigo-950/65 opacity-0 transition-opacity duration-700 pointer-events-none z-10"></div>
+
+              <!-- Sleep Zzz floating letters -->
+              <div id="zzz" class="zzz-container hidden">
+                <span class="z1">Z</span>
+                <span class="z2">z</span>
+                <span class="z3">z</span>
+              </div>
+
+              <!-- Speech Bubble -->
+              <div id="speech" class="speech-bubble"></div>
+
+              <!-- Visual Effects Layer (Hearts, Crumbs, Notes, Confetti) -->
+              <div id="fxLayer" class="fx-layer"></div>
+
+              <!-- Food Dish & Prop on Stage (Centered Right in Front of Pet) -->
+              <div id="foodProp" class="food-prop hidden-prop">
+                <div class="food-dish">
+                  <svg class="absolute inset-0 w-full h-full" viewBox="0 0 80 50">
+                    <ellipse cx="40" cy="34" rx="36" ry="12" fill="#CBD5E1" />
+                    <ellipse cx="40" cy="31" rx="34" ry="10" fill="#FFFFFF" stroke="#FDBA74" stroke-width="2" />
+                  </svg>
+                  <div id="foodItemEmoji" class="food-item-icon relative z-10">🍗</div>
+                </div>
+              </div>
+
+              <!-- Stage floor border line -->
+              <div class="stage-floor"></div>
+
+              <!-- LAYERED LIVING SVG PET CONTAINER -->
+              <div id="petContainer" class="w-full h-full flex items-center justify-center cursor-pointer relative z-10" title="Click or stroke to pet me!">
+                <!-- Rendered dynamically by PetRenderer -->
+              </div>
+
+              <!-- Interactive Floating Food Tray on Stage -->
+              <div id="stageFoodTray" class="stage-food-tray hidden">
+                <button class="stage-food-btn" data-stage-food="drumstick" title="Chicken Meat">
+                  <span class="text-2xl">🍗</span>
+                  <span class="text-[10px] font-black text-stone-700">Meat</span>
+                </button>
+                <button class="stage-food-btn" data-stage-food="fish" title="Fresh Fish">
+                  <span class="text-2xl">🐟</span>
+                  <span class="text-[10px] font-black text-stone-700">Fish</span>
+                </button>
+                <button class="stage-food-btn" data-stage-food="steak" title="Juicy Steak">
+                  <span class="text-2xl">🥩</span>
+                  <span class="text-[10px] font-black text-stone-700">Steak</span>
+                </button>
+                <button class="stage-food-btn" data-stage-food="bone" title="Tasty Bone">
+                  <span class="text-2xl">🦴</span>
+                  <span class="text-[10px] font-black text-stone-700">Bone</span>
+                </button>
+                <button class="stage-food-btn" data-stage-food="biscuit" title="Biscuit">
+                  <span class="text-2xl">🍪</span>
+                  <span class="text-[10px] font-black text-stone-700">Biscuit</span>
+                </button>
+                <button class="stage-food-btn" data-stage-food="milk" title="Milk Bowl">
+                  <span class="text-2xl">🥛</span>
+                  <span class="text-[10px] font-black text-stone-700">Milk</span>
+                </button>
+                <button id="closeFoodTrayBtn" type="button" class="px-2 text-stone-400 hover:text-stone-700 font-black text-xs" title="Close Food Menu">✕</button>
+              </div>
+
+              <!-- Stage Evolution Celebration Banner Modal -->
+              <div id="evolutionModal" class="celebrate-banner">
+                <div class="celebrate-card">
+                  <div class="text-4xl mb-2">🎉✨👑</div>
+                  <h3 class="text-2xl font-black text-stone-900" id="evoTitle">Growth Stage Up!</h3>
+                  <p class="text-sm text-stone-600 font-bold mt-1" id="evoDesc">Buddy evolved into a Young Pet!</p>
+                  <button type="button" id="evoCloseBtn" class="mt-4 px-6 py-2.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-sm transition shadow-lg shadow-orange-500/30">
+                    Awesome! 🐾
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Pet Action Buttons -->
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2.5 mt-4">
+              <!-- Feed Button -->
+              <button class="action-btn" data-action="feed" id="feedBtn" title="Feed your pet with delicious treats">
+                <span class="action-ic bg-orange-100 text-orange-600">
+                  <i data-lucide="drumstick" class="w-5 h-5"></i>
+                </span>
+                <span>Feed</span>
+              </button>
+
+              <!-- Play Button -->
+              <button class="action-btn" data-action="play" id="playBtn" title="Play catch and have fun">
+                <span class="action-ic bg-pink-100 text-pink-600">
+                  <i data-lucide="volleyball" class="w-5 h-5"></i>
+                </span>
+                <span>Play</span>
+              </button>
+
+              <!-- Dance Button -->
+              <button class="action-btn" data-action="dance" id="danceBtn" title="Full body groove dance routine">
+                <span class="action-ic bg-amber-100 text-amber-600">
+                  <i data-lucide="music" class="w-5 h-5"></i>
+                </span>
+                <span>Dance</span>
+              </button>
+
+              <!-- Walk Button -->
+              <button class="action-btn" data-action="walk" id="walkBtn" title="Make pet walk around the stage">
+                <span class="action-ic bg-teal-100 text-teal-600">
+                  <i data-lucide="footprints" class="w-5 h-5"></i>
+                </span>
+                <span id="walkLabel">Walk</span>
+              </button>
+
+              <!-- Sleep Button -->
+              <button class="action-btn" data-action="sleep" id="sleepBtn" title="Tuck in your pet for sleep">
+                <span class="action-ic bg-indigo-100 text-indigo-600">
+                  <i data-lucide="moon" class="w-5 h-5"></i>
+                </span>
+                <span id="sleepLabel">Sleep</span>
+              </button>
+
+              <!-- Vet / Heal Button -->
+              <button class="action-btn" data-action="heal" id="healBtn" title="Visit the vet and heal your pet">
+                <span class="action-ic bg-emerald-100 text-emerald-600">
+                  <i data-lucide="stethoscope" class="w-5 h-5"></i>
+                </span>
+                <span>Vet</span>
+              </button>
+            </div>
+
+            <!-- Food Selection Drawer -->
+            <div id="foodMenu" class="food-menu hidden">
+              <button class="food-opt" data-food="treat">
+                <span class="text-xl">🦴</span>
+                <span>Tasty Treat</span>
+              </button>
+              <button class="food-opt" data-food="meal">
+                <span class="text-xl">🍗</span>
+                <span>Hearty Meal</span>
+              </button>
+              <button class="food-opt" data-food="feast">
+                <span class="text-xl">🥩</span>
+                <span>Grand Feast</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pet Status Indicators Card -->
+          <div class="bg-white rounded-3xl border border-orange-100 p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-black text-stone-900 flex items-center gap-2">
+                <i data-lucide="activity" class="w-4 h-4 text-orange-500"></i>
+                <span>Pet Status</span>
+              </h3>
+              <span id="saveState" class="text-xs font-bold text-stone-400 inline-flex items-center gap-1.5">
+                <i data-lucide="cloud" class="w-3.5 h-3.5 text-emerald-500"></i> Saved
+              </span>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-x-6 gap-y-4" id="stats">
+              <!-- Hunger -->
+              <div>
+                <div class="flex justify-between text-xs font-extrabold text-stone-600">
+                  <span class="flex items-center gap-1"><i data-lucide="drumstick" class="w-3.5 h-3.5 text-orange-500"></i> Hunger</span>
+                  <span id="statHungerVal">75%</span>
+                </div>
+                <div class="stat-bar-wrap">
+                  <div id="statHungerBar" class="stat-bar-fill bg-orange-500" style="width: 75%"></div>
+                </div>
+              </div>
+              <!-- Happiness -->
+              <div>
+                <div class="flex justify-between text-xs font-extrabold text-stone-600">
+                  <span class="flex items-center gap-1"><i data-lucide="heart" class="w-3.5 h-3.5 text-pink-500"></i> Happiness</span>
+                  <span id="statHappinessVal">80%</span>
+                </div>
+                <div class="stat-bar-wrap">
+                  <div id="statHappinessBar" class="stat-bar-fill bg-pink-500" style="width: 80%"></div>
+                </div>
+              </div>
+              <!-- Energy -->
+              <div>
+                <div class="flex justify-between text-xs font-extrabold text-stone-600">
+                  <span class="flex items-center gap-1"><i data-lucide="zap" class="w-3.5 h-3.5 text-indigo-500"></i> Energy</span>
+                  <span id="statEnergyVal">85%</span>
+                </div>
+                <div class="stat-bar-wrap">
+                  <div id="statEnergyBar" class="stat-bar-fill bg-indigo-500" style="width: 85%"></div>
+                </div>
+              </div>
+              <!-- Health -->
+              <div>
+                <div class="flex justify-between text-xs font-extrabold text-stone-600">
+                  <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i> Health</span>
+                  <span id="statHealthVal">95%</span>
+                </div>
+                <div class="stat-bar-wrap">
+                  <div id="statHealthBar" class="stat-bar-fill bg-emerald-500" style="width: 95%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity History Card -->
+          <div class="bg-white rounded-3xl border border-orange-100 p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-black text-stone-900 flex items-center gap-2">
+                <i data-lucide="history" class="w-4 h-4 text-orange-500"></i>
+                <span>Recent Activity</span>
+              </h3>
+              <button id="releaseBtn" class="text-xs font-bold text-stone-400 hover:text-red-500 inline-flex items-center gap-1 transition">
+                <i data-lucide="refresh-ccw" class="w-3.5 h-3.5"></i> Adopt a different pet
+              </button>
+            </div>
+            <ul id="activity" class="space-y-2 text-sm text-stone-600 font-semibold">
+              <li class="flex items-center gap-2 text-xs text-stone-500">
+                <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
+                <span>Adopted your new pet! Take good care of them.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Chat & Voice Interface -->
+        <aside class="bg-white rounded-3xl border border-orange-100 flex flex-col h-[640px] lg:h-[calc(100vh-100px)] lg:sticky lg:top-[84px] shadow-sm overflow-hidden">
+          <!-- Chat Header -->
+          <div class="flex items-center gap-3 p-4 border-b border-stone-100 bg-stone-50/50">
+            <img id="chatAvatar" src="assets/buddy.svg" alt="Pet Avatar" class="w-10 h-10 rounded-full object-contain bg-[#FFF4ED] p-0.5 border border-orange-100">
+            <div class="flex-1 min-w-0">
+              <div class="font-extrabold text-sm text-stone-900 leading-tight" id="chatTitle">Chat with Buddy</div>
+              <div class="text-xs text-emerald-600 font-bold inline-flex items-center gap-1" id="chatStatus">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Living &amp; Online
+              </div>
+            </div>
+            <button id="clearChat" title="Clear chat" class="w-8 h-8 rounded-full hover:bg-stone-200/60 flex items-center justify-center text-stone-400 transition">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Chat Message Log -->
+          <div id="chatLog" class="flex-1 overflow-y-auto p-4 space-y-3">
+            <div class="pet-msg flex gap-2.5 max-w-[85%]">
+              <div class="bg-orange-50 border border-orange-100 rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm font-semibold text-stone-800">
+                Hiii! I am so happy you adopted me! Talk to me in English or Bengali, ask me to dance, feed me, or play fetch! 🐾✨
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Suggestion Action Chips (English & Bengali) -->
+          <div id="chatSuggestions" class="px-3 pb-2 flex gap-1.5 overflow-x-auto no-scrollbar">
+            <button type="button" class="chip" data-suggest="Dance for me! 💃">Dance 💃</button>
+            <button type="button" class="chip" data-suggest="Are you hungry? 🍖">Feed me 🍖</button>
+            <button type="button" class="chip" data-suggest="Let's play ball! 🎾">Play fetch 🎾</button>
+            <button type="button" class="chip" data-suggest="নাচো ✨">নাচো ✨</button>
+            <button type="button" class="chip" data-suggest="কেমন আছো? 😊">কেমন আছো? 😊</button>
+            <button type="button" class="chip" data-suggest="Good night! 🌙">Good night 🌙</button>
+          </div>
+
+          <!-- Media Controls: Camera, Microphone, Voice (TTS) -->
+          <div class="px-3 pb-2 flex flex-wrap items-center gap-2 border-t border-stone-100 pt-2" id="mediaControls">
+            <button type="button" id="cameraBtn" class="chip inline-flex items-center gap-1">
+              <span>📷 Camera</span>
+            </button>
+            <button type="button" id="micBtn" class="chip inline-flex items-center gap-1">
+              <span>🎙️ Speak</span>
+            </button>
+            <button type="button" id="voiceBtn" class="chip inline-flex items-center gap-1">
+              <span id="voiceLabel">🔊 Voice: Off</span>
+            </button>
+            <span id="mediaStatus" class="text-xs text-stone-400 font-semibold self-center" aria-live="polite"></span>
+          </div>
+
+          <!-- Camera Preview Video & Canvas -->
+          <div id="cameraContainer" class="hidden px-3 pb-2 relative">
+            <video id="cameraPreview" class="w-full max-h-36 rounded-xl object-cover bg-black" autoplay playsinline muted></video>
+            <button id="closeCameraBtn" class="absolute top-2 right-5 bg-black/60 text-white rounded-full p-1 hover:bg-black text-xs font-bold">✕</button>
+          </div>
+          <canvas id="cameraCanvas" class="hidden"></canvas>
+
+          <!-- Chat Form -->
+          <form id="chatForm" class="p-3 border-t border-stone-100 flex gap-2 bg-stone-50/50">
+            <input id="chatInput" autocomplete="off" maxlength="300" class="flex-1 min-w-0 rounded-full bg-white border border-stone-200 px-4 py-2.5 text-sm font-semibold outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" placeholder="Say something or give a command…">
+            <button id="chatSend" class="w-10 h-10 shrink-0 rounded-full bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center transition shadow-md shadow-orange-500/20 disabled:opacity-50">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-stone-900/50 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl w-full max-w-md p-6 shadow-2xl border border-orange-100 space-y-5">
+      <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+        <h3 class="text-xl font-black text-stone-900 flex items-center gap-2">
+          <i data-lucide="settings" class="w-5 h-5 text-orange-500"></i> Game Settings
+        </h3>
+        <button id="closeSettingsBtn" class="text-stone-400 hover:text-stone-700 text-lg font-bold">✕</button>
+      </div>
+
+      <!-- Rename Pet -->
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-wider text-stone-500 mb-1.5" for="renameInput">Rename Pet</label>
+        <div class="flex gap-2">
+          <input id="renameInput" maxlength="20" class="flex-1 rounded-xl border border-stone-200 px-3.5 py-2 font-bold text-stone-800 text-sm focus:border-orange-400 outline-none">
+          <button id="saveNameBtn" class="px-4 py-2 bg-orange-500 text-white rounded-xl font-bold text-xs hover:bg-orange-600 transition">Save</button>
+        </div>
+      </div>
+
+      <!-- Sound Settings -->
+      <div class="space-y-3 pt-2 border-t border-stone-100">
+        <div class="text-xs font-bold uppercase tracking-wider text-stone-500">Audio Controls</div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-bold text-stone-700">Master Volume</span>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.6" class="w-36 accent-orange-500">
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-bold text-stone-700">Sound Effects (SFX)</span>
+          <input type="checkbox" id="sfxToggle" checked class="w-4 h-4 accent-orange-500">
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-bold text-stone-700">Dance Music</span>
+          <input type="checkbox" id="musicToggle" checked class="w-4 h-4 accent-orange-500">
+        </div>
+      </div>
+
+      <!-- Optional External AI API Key -->
+      <div class="space-y-2.5 pt-2 border-t border-stone-100">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-stone-500">AI Brain Connection</span>
+          <span id="aiActiveBadge" class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Smart Local Q&A Active</span>
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-stone-600 mb-1" for="geminiKeyInput">Google Gemini API Key (Free)</label>
+          <input type="password" id="geminiKeyInput" placeholder="AIzaSy..." class="w-full rounded-xl border border-stone-200 px-3 py-1.5 text-xs font-mono focus:border-orange-400 outline-none">
+        </div>
+        <div class="flex justify-between items-center pt-1">
+          <span class="text-[11px] text-stone-400">Leave blank to use built-in Smart Engine</span>
+          <button id="saveAiKeyBtn" class="px-3 py-1 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-xs font-bold transition">Save AI Key</button>
+        </div>
+      </div>
+
+      <!-- Danger Zone / Reset -->
+      <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
+        <div>
+          <div class="text-xs font-bold text-red-600">Reset Pet Data</div>
+          <div class="text-[11px] text-stone-400">Clear progress and start fresh</div>
+        </div>
+        <button id="resetPetBtn" class="px-3.5 py-1.5 rounded-xl border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold transition">
+          Reset All
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-stone-900 text-white text-xs font-bold rounded-full px-5 py-2.5 opacity-0 pointer-events-none transition-opacity shadow-lg"></div>
+
+  <!-- Game Scripts -->
+  <script src="js/pet-model.js"></script>
+  <script src="js/pet-renderer.js"></script>
+  <script src="js/pet-animator.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/personality.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

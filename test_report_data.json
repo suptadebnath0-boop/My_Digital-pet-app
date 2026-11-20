@@ -1,0 +1,172 @@
+[
+  {
+    "name": "File: index.html",
+    "passed": true,
+    "details": "32391 bytes"
+  },
+  {
+    "name": "File: style.css",
+    "passed": true,
+    "details": "11046 bytes"
+  },
+  {
+    "name": "File: manifest.json",
+    "passed": true,
+    "details": "737 bytes"
+  },
+  {
+    "name": "File: icon.svg",
+    "passed": true,
+    "details": "1034 bytes"
+  },
+  {
+    "name": "File: server.py",
+    "passed": true,
+    "details": "12197 bytes"
+  },
+  {
+    "name": "File: js/app.js",
+    "passed": true,
+    "details": "38905 bytes"
+  },
+  {
+    "name": "File: assets/buddy.svg",
+    "passed": true,
+    "details": "4732 bytes"
+  },
+  {
+    "name": "File: assets/kitty.svg",
+    "passed": true,
+    "details": "5822 bytes"
+  },
+  {
+    "name": "File: icons/icon-192.svg",
+    "passed": true,
+    "details": "807 bytes"
+  },
+  {
+    "name": "File: icons/icon-512.svg",
+    "passed": true,
+    "details": "821 bytes"
+  },
+  {
+    "name": "File: icons/maskable-512.svg",
+    "passed": true,
+    "details": "814 bytes"
+  },
+  {
+    "name": "File: RUN_APP.bat",
+    "passed": true,
+    "details": "684 bytes"
+  },
+  {
+    "name": "File: README.md",
+    "passed": true,
+    "details": "7047 bytes"
+  },
+  {
+    "name": "File: .env.example",
+    "passed": true,
+    "details": "232 bytes"
+  },
+  {
+    "name": "File: sw.js",
+    "passed": true,
+    "details": "1455 bytes"
+  },
+  {
+    "name": "All 15 Required Files Present",
+    "passed": true,
+    "details": "Matches CHECK_FILES.bat checklist"
+  },
+  {
+    "name": "PetModel: 5 Growth Stages Defined",
+    "passed": true,
+    "details": "All 5 growth stages verified"
+  },
+  {
+    "name": "PetModel: Feeding Cooldown Logic",
+    "passed": true,
+    "details": "2-second care cooldown present"
+  },
+  {
+    "name": "PetModel: XP & Bond System",
+    "passed": true,
+    "details": "XP progression and leveling verified"
+  },
+  {
+    "name": "PetModel: Persistence Methods",
+    "passed": true,
+    "details": "Save and load methods present"
+  },
+  {
+    "name": "PetRenderer: Independent Body Nodes",
+    "passed": true,
+    "details": "15 independent articulation nodes verified"
+  },
+  {
+    "name": "PetRenderer: Dog & Cat Supported",
+    "passed": true,
+    "details": "Buddy and Kitty rigs present"
+  },
+  {
+    "name": "PetRenderer: Facial Expressions",
+    "passed": true,
+    "details": "Eye, mouth, and brow controllers present"
+  },
+  {
+    "name": "Personality: Bengali Command Support",
+    "passed": true,
+    "details": "Bengali intents verified: নাচো, খাবার, খেলা, ঘুমাও, কেমন আছো, ভালোবাসি"
+  },
+  {
+    "name": "Personality: English Command Support",
+    "passed": true,
+    "details": "English intents verified: dance, feed, play, sleep, wake, status"
+  },
+  {
+    "name": "Screenshot: Adoption Center with Buddy & Kitty Cards",
+    "passed": true,
+    "details": "1280x820 px, 109823 bytes (screenshot_01_adoption.png)"
+  },
+  {
+    "name": "Screenshot: Idle Living Pet (Buddy) on Stage",
+    "passed": true,
+    "details": "1280x820 px, 109823 bytes (screenshot_02_idle.png)"
+  },
+  {
+    "name": "Screenshot: Eating State (Mouth Open & Food Prop)",
+    "passed": true,
+    "details": "1280x820 px, 109848 bytes (screenshot_03_eating.png)"
+  },
+  {
+    "name": "Screenshot: Full-Body Dance Routine with Notes",
+    "passed": true,
+    "details": "1280x820 px, 109823 bytes (screenshot_04_dance.png)"
+  },
+  {
+    "name": "Screenshot: Sleep Animation (Night Mode & Zzz)",
+    "passed": true,
+    "details": "1280x820 px, 109823 bytes (screenshot_05_sleep.png)"
+  },
+  {
+    "name": "Screenshot: Stage 1: Baby Pet (0.72x scale)",
+    "passed": true,
+    "details": "1280x820 px, 109823 bytes (screenshot_06_stage_1_baby.png)"
+  },
+  {
+    "name": "Screenshot: Stage 3: Growing Pet (0.98x scale)",
+    "passed": true,
+    "details": "1280x820 px, 109823 bytes (screenshot_07_stage_3_growing.png)"
+  },
+  {
+    "name": "Screenshot: Stage 5: Fully Grown Pet (1.22x scale)",
+    "passed": true,
+    "details": "1280x820 px, 109823 bytes (screenshot_08_stage_5_fully_grown.png)"
+  },
+  {
+    "name": "Screenshot: Kitty the Cat on Stage",
+    "passed": true,
+    "details": "1280x820 px, 109823 bytes (screenshot_09_kitty_cat.png)"
+  }
+]

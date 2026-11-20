@@ -1,0 +1,28 @@
+{
+  "name": "Buddy & Kitty – AI Digital Pet",
+  "short_name": "AI Pet",
+  "description": "Adopt Buddy the dog or Kitty the cat, take care of them and chat with your living animated pet.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFF7F1",
+  "theme_color": "#F97316",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/maskable-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
